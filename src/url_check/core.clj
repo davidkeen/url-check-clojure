@@ -5,18 +5,16 @@
 (def urls ["http://leiningen.org"
            "https://google.com"
            "https://github.com"
+           "http://httpstat.us/404"
            "http://nope"])
 
-(defn ok [response] (= 200 (:status response)))
-
-;; TODO: Handle exceptions
 (defn check-url
   [s]
   (try
-    (client/get s {:throw-exceptions false})
+    (client/get s)
     (println (str "[OK] " s))
-    (catch Exception _
-      (println (str "[KO] " s))))
+    (catch Exception e
+      (println (str "[FAIL] " s " - " (.getMessage e)))))
   )
 
 (defn -main
