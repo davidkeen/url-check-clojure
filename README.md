@@ -1,16 +1,16 @@
 # url-check
 
-FIXME: description
+Checks a collection of URLs. Anything other than a 200-207/300-307 response is considered a failure.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Download from https://gitlab.com/davidkeen/url-check-clojure.
 
 ## Usage
 
-FIXME: explanation
+Run using Leiningen
 
-    $ java -jar url-check-0.1.0-standalone.jar [args]
+    $ lein run
 
 ## Options
 
@@ -30,7 +30,6 @@ FIXME: listing of options this app accepts.
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 David Keen
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the MIT License.
