@@ -1,12 +1,7 @@
 (ns url-check.core
-  (:require [clj-http.client :as client])
+  (:require [clj-http.client :as client]
+            [url-check.db :as db])
   (:gen-class))
-
-(def urls ["http://leiningen.org"
-           "https://google.com"
-           "https://github.com"
-           "http://httpstat.us/404"
-           "http://nope"])
 
 (defn check-url
   "Checks a URL. Anything other than a 200-207/300-307 response is considered a failure."
@@ -24,13 +19,13 @@
 
 (defn -main
   [& args]
-  (println "Checking" (count urls) "URLs")
-  (let [results (map check-url urls)]
+  (let [urls (db/urls (.getYear (java.time.LocalDate/now)))
+        results (map check-url urls)]
+    (println "Checking" (count urls) "URLs")
     (println "OK:" (count (filter-status results "OK")))
     (println "Failed:" (count (filter-status results "FAIL")))
     (doseq [x (filter-status results "FAIL")] (println \tab (:url x) (:message x)))))
 
 ;; Things to do:
-;; Fetch URLs from database
 ;; Check URLs in parallel
 ;; Send email with failures
