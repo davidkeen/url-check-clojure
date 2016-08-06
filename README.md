@@ -12,22 +12,6 @@ Run using Leiningen
 
     $ lein run
 
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
 ## License
 
 Copyright © 2016 David Keen
