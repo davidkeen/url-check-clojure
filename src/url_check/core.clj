@@ -1,6 +1,7 @@
 (ns url-check.core
   (:require [clj-http.client :as client]
             [url-check.db :as db])
+  (:import (java.time LocalDate))
   (:gen-class))
 
 (defn check-url
@@ -19,7 +20,7 @@
 
 (defn -main
   [& args]
-  (let [urls (db/urls (.getYear (java.time.LocalDate/now)))
+  (let [urls (db/urls (.getYear (LocalDate/now)))
         results (map check-url urls)]
     (println "Checking" (count urls) "URLs")
     (println "OK:" (count (filter-status results "OK")))
