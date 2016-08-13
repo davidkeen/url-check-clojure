@@ -21,12 +21,12 @@
 (defn -main
   [& args]
   (let [urls (db/urls (.getYear (LocalDate/now)))
-        results (map check-url urls)]
+        results (pmap check-url urls)]                      ; Is pmap the best option here?
     (println "Checking" (count urls) "URLs")
     (println "OK:" (count (filter-status results "OK")))
     (println "Failed:" (count (filter-status results "FAIL")))
-    (doseq [x (filter-status results "FAIL")] (println \tab (:url x) (:message x)))))
+    (doseq [x (filter-status results "FAIL")] (println \tab (:url x) (:message x)))
+    (shutdown-agents)))
 
 ;; Things to do:
-;; Check URLs in parallel
 ;; Send email with failures
